@@ -77,3 +77,7 @@ D:\Code Section\.Net code\MissingPersonAwarenessApp\WebApplication1\WebApplicati
 D:\Code Section\.Net code\MissingPersonAwarenessApp\WebApplication1\WebApplication1\obj\Debug\MissingPersonApplication.csproj.CopyComplete
 D:\Code Section\.Net code\MissingPersonAwarenessApp\WebApplication1\WebApplication1\obj\Debug\WebApplication1.dll
 D:\Code Section\.Net code\MissingPersonAwarenessApp\WebApplication1\WebApplication1\obj\Debug\WebApplication1.pdb
+D:\Code Section\.Net code\MissingPersonAwarenessApp\WebApplication1\WebApplication1\bin\EntityFramework.dll
+D:\Code Section\.Net code\MissingPersonAwarenessApp\WebApplication1\WebApplication1\bin\EntityFramework.SqlServer.dll
+D:\Code Section\.Net code\MissingPersonAwarenessApp\WebApplication1\WebApplication1\bin\EntityFramework.xml
+D:\Code Section\.Net code\MissingPersonAwarenessApp\WebApplication1\WebApplication1\bin\EntityFramework.SqlServer.xml
