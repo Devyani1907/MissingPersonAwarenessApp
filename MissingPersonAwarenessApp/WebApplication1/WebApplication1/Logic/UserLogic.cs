@@ -11,21 +11,55 @@ namespace WebApplication1.Logic
     {
         public UserModel ValidUser(UserModel model)
         {
-            UserModel userModel = new UserModel();
-
-            using (MissingPersonEntities entities = new MissingPersonEntities())
+            try
             {
+                UserModel userModel = new UserModel();
 
-                // Get User by Email
-                var userDetail = from user in entities.Users
-                                 where user.Email == model.Email
-                                 select new UserModel
-                                 {
-                                     Email = user.Email,
-                                     Password = user.Password
-                                 };
+                using (MissingPersonEntities entities = new MissingPersonEntities())
+                {
+                    var userDetail = new User();
+
+                    // Get User by Email
+                    userDetail = (from user in entities.Users
+                                  where user.Email == model.Email
+                                  select user).FirstOrDefault<User>();
+
+                    userModel.Email = userDetail.Email;
+                    userModel.Password = userDetail.Password;
+
+                }
+                return userModel;
             }
-            return userModel;
+            catch (Exception ex)
+            { 
+                
+            }
+
+            return null;
+        }
+
+        public void CreateUser(UserModel model)
+        {
+            try
+            {
+                using (MissingPersonEntities entities = new MissingPersonEntities())
+                {
+                    User userDetail = new User();
+
+                    userDetail.Email = model.Email;
+                    userDetail.Password = model.Password;
+                    userDetail.Username = model.Username;
+                    userDetail.CreatedTime = DateTime.Now;
+
+                    entities.Users.Add(userDetail);
+                    entities.SaveChanges();
+                }
+            }
+            catch(Exception ex)
+            { 
+            
+            }
+            
         }
     }
 }

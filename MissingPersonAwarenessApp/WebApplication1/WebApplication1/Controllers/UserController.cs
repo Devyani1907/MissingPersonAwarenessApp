@@ -31,7 +31,7 @@ namespace WebApplication1.Controllers
             {
                 if (model.Password == userModel.Password)
                 {
-                    message = "Correct";
+                    return RedirectToAction("Dashboard", "Dashboard");
                 }
             }
 
@@ -42,6 +42,19 @@ namespace WebApplication1.Controllers
         {
             return View();
         }
+
+
+        [HttpPost]
+        public ActionResult Registration(UserModel model)
+        {
+            UserLogic userLogic = new UserLogic();
+            userLogic.CreateUser(model);
+
+            return View("Login");
+        }
+
+
+        
 
     }
 }
