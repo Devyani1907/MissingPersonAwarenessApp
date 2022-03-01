@@ -196,6 +196,10 @@
     <Content Include="Image\cooker-img.png" />
     <Content Include="Image\header.jpg" />
     <Content Include="Image\logo.png" />
+    <Content Include="Image\MissingPerson\missing1.jpg" />
+    <Content Include="Image\MissingPerson\missing2.jpg" />
+    <Content Include="Image\MissingPerson\missing3.jpg" />
+    <Content Include="Image\MissingPerson\missing4.jpg" />
     <Content Include="Image\Missing_image.jpg" />
     <Content Include="Image\overlay-pattern.png" />
     <Content Include="Image\overlay-pattern2.png" />
@@ -218,7 +222,6 @@
       <DependentUpon>MissingPersonAwarenessDB.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
-    <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
@@ -230,6 +233,7 @@
     <Content Include="Scripts\JS\chart\chart.min.js" />
     <Content Include="Scripts\JS\easing\easing.js" />
     <Content Include="Scripts\JS\easing\easing.min.js" />
+    <Content Include="Scripts\JS\home\jquery-1.10.2.min.js" />
     <Content Include="Scripts\JS\home\main.js" />
     <Content Include="Scripts\JS\jquery.nav.js" />
     <Content Include="Scripts\JS\jquery.sticky.js" />
