@@ -1,0 +1,51 @@
+﻿
+@{
+    ViewBag.Title = "Registration";
+}
+
+<style>
+
+    .admin-icon {
+        width: 206px;
+        padding-left: 80px;
+    }
+</style>
+
+
+<div class="container-xxl position-relative bg-white d-flex p-0">
+    <!-- Sign Up Start -->
+    <div class="col-md-4">
+
+    </div>
+    <form method="post">
+        <div class="container-fluid col-md-5">
+            <div class="d-flex align-items-center justify-content-between mb-3">
+                <img src="~/Image/Admin_image.png" class="admin-icon" />
+                <h3 class="text-primary text-center" style="padding-right: 164px"><i class="fa fa-address me-2"></i>Sign Up</h3>
+            </div>
+            <div class="form-floating mb-3">
+                <label for="floatingText">Username</label>
+                <input type="text" class="form-control" id="floatingText" name="Username" placeholder="jhondoe">
+            </div><br />
+            <div class="form-floating mb-3">
+                <label for="floatingInput">Email address</label>
+                <input type="email" class="form-control" id="floatingInput" name="Email" placeholder="name@example.com">
+            </div><br />
+            <div class="form-floating mb-4">
+                <label for="floatingPassword">Password</label>
+                <input type="password" class="form-control" id="floatingPassword" name="Password" placeholder="Password">
+            </div><br />
+            <div class="d-flex align-items-center justify-content-between mb-4">
+                @*<div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                    <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                </div>*@
+
+            </div><br />
+            <button type="submit" class="btn btn-primary py-3 w-100 mb-4" style="width: 282px;">Sign Up</button>
+            <p class="text-center mb-0" style="padding-right: 91px;">Already have an Account? <a href="/">Sign In</a></p>
+        </div>
+    </form>
+    <!-- Sign Up End -->
+</div>
+
