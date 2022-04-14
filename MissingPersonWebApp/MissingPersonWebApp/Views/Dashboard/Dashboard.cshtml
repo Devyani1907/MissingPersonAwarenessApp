@@ -1,0 +1,170 @@
+﻿@using Microsoft.AspNetCore.Http
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+@{
+    ViewBag.Title = "Dashboard";
+}
+<link href="~/css/CSS/animate.min.css" rel="stylesheet" />
+<link href="~/css/CSS/bootstrap.min.css" rel="stylesheet" />
+<link href="~/css/CSS/font-awesome.min.css" rel="stylesheet" />
+<link href="~/css/CSS/main.css" rel="stylesheet" />
+<link href="~/css/CSS/owl.carousel.css" rel="stylesheet" />
+<link href="~/css/CSS/responsive.css" rel="stylesheet" />
+
+<style>
+
+    .group {
+        white-space: nowrap;
+    }
+
+        .group div {
+            width: 124px;
+            height: 200px;
+            display: inline-block;
+            border: 1px solid white
+        }
+    div.scrollmenu {
+        background-color: #33333308;
+        overflow: auto;
+        white-space: nowrap;
+    }
+
+        div.scrollmenu a {
+            display: inline-block;
+            color: white;
+            text-align: center;
+            padding: 14px;
+            text-decoration: none;
+        }
+
+            div.scrollmenu a:hover {
+                background-color: #777;
+            }
+</style>
+
+<body>
+    <!--
+    header-img start
+    ============================== -->
+    <section id="hero-area">
+        <img class="img-responsive" src="~/Image/header8.png" alt="">
+    </section>
+    <!--
+    Header start
+    ============================== -->
+    <nav id="navigation">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="block">
+                        <nav class="navbar navbar-default">
+                            <div class="container-fluid">
+                                <!-- Brand and toggle get grouped for better mobile display -->
+                                <div class="navbar-header">
+                                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                                        <span class="sr-only">Toggle navigation</span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                    </button>
+
+                                    @*<a class="navbar-brand" href="#">
+                                            <img src="~/Image/logo.png" alt="Logo">
+                                        </a>*@
+
+                                </div>
+
+                                <!-- Collect the nav links, forms, and other content for toggling -->
+                                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                                    <div class="pull-right">
+                                        <span><button class="btn btn-outline-light"><a href="/Dashboard/Dashboard">Home</a></button></span>&nbsp&nbsp&nbsp
+                                        <span><button class="btn btn-outline-light"><a href="">About us</a></button></span>&nbsp&nbsp&nbsp
+                                        <span><button class="btn btn-outline-light"><a href="">Blog</a></button></span>&nbsp&nbsp&nbsp
+                                        <span><button class="btn btn-outline-light"><a href="">Contacts</a></button></span>&nbsp&nbsp&nbsp
+                                        @{
+                                        var role = ViewData["role"];
+                                        if(role != null && role.ToString() == "admin")
+                                        {
+                                               <span>@ViewData["role"]</span>
+                                        }
+
+                                        }
+                                        <span><button class="btn btn-outline-light"><a href="/MissingPerson/ManageMissingPerson">Manage Missing Person</a></button></span>
+                                    </div>
+                                </div><!-- /.navbar-collapse -->
+                            </div><!-- /.container-fluid -->
+                        </nav>
+                    </div>
+                </div><!-- .col-md-12 close -->
+            </div><!-- .row close -->
+        </div><!-- .container close -->
+    </nav><!-- header close -->
+    <!--
+    Slider start
+    ============================== -->
+
+    <section id="slider">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="block wow fadeInUp" data-wow-duration="500ms" data-wow-delay="300ms">
+                        <div class="title">
+                            <h3>Missing <span>People</span></h3>
+                        </div>
+                        <div class="scrollmenu">
+                            <div class="group">
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- .col-md-12 close -->
+            </div><!-- .row close -->
+        </div><!-- .container close -->
+    </section><!-- slider close -->
+
+
+    <script src="~/js/JS/home/jquery-1.10.2.min.js"></script>
+    <script src="~/js/JS/modernizr-2.6.2.min.js"></script>
+    <script src="~/js/JS/jquery.nav.js"></script>
+    <script src="~/js/JS/jquery.sticky.js"></script>
+    <script src="~/js/bootstrap.min.js"></script>
+    <script src="~/js/JS/plugins.js"></script>
+    <script src="~/js/JS/wow.min.js"></script>
+    <script src="~/js/JS/home/main.js"></script>
+
+
+    <script>
+        $("#owl-example").owlCarousel({
+            // Most important owl features
+            items: 4,
+            pagination: true,
+            paginationSpeed: 1000,
+            navigation: true,
+            navigationText: ["", "<i class='fa fa-angle-right'></i>"],
+            slideSpeed: 800,
+        });
+        debugger;
+       
+
+        $.ajax({
+            url: window.location.origin + "/MissingPerson/GetMissingPeopleDetail",
+            success: function (result) {
+                debugger;
+                let imageHtml = "";
+                for (var i = 1; i <= result.recordsTotal; i++)
+                {
+                    let dateArry = result.data[i - 1].missingDate.split('T')[0].split('-');
+                    let date = dateArry[2] + '-' + dateArry[1] + '-' + dateArry[0]
+
+                    let info = 'Name: ' + result.data[i - 1].firstName + ' ' + result.data[i - 1].lastName ;
+                        //'Missing Date: ' + date;// + '/n' +
+                    //'Age: ' + result.data[i - 1].age;
+                    info.replace(/\n/g, '<br/>');
+                    imageHtml = imageHtml + '<div class="owl-item" style="width: 258px;;"><div class="col-md-6"><img class="img-responsive" src = "/Image/MissingPeopleImages/' + result.data[i - 1].imageName + '" style="width:209px"/></div ><div class="col-md-6"> ' + info + '</div></div >'
+                }
+                $(".group").append(imageHtml);
+              
+            }
+        });
+
+    </script>
+</body>
+

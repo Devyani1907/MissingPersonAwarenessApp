@@ -1,0 +1,62 @@
+﻿@model MissingPersonWebApp.Models.UserModel
+
+@{
+    ViewData["Title"] = "Login Page";
+}
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+
+<!-- Sign In Start -->
+
+<style>
+
+    .verticalLine {
+        border-left: thick solid #152575;
+    }
+
+    .text-primary {
+        color: #376290 !important;
+    }
+
+    .center {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        
+    }
+
+</style>
+
+<div class="container-fluid">
+    <br /><br />
+
+    <div class="column col-md-9" style="padding-left: 399px;">
+        <h3 class="text-primary text-center">Admin Login</h3>
+        
+        <div class="bg-light rounded h-100 p-4">
+            <span style="color: red; padding-left: 139px;">@ViewBag.Message</span>
+            <form method="post" action="/User/Login">
+                <label for="floatingInput">Email address</label>
+                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", @placeholder = "name@example.com" } })
+                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                <br />
+                <br />
+                <label for="floatingPassword">Password</label>
+                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", @placeholder = "Password" } })
+                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                <br />
+                <br />
+                <button type="submit" class="btn btn-primary py-3 w-100 mb-4">Sign In</button><br /><br />
+
+                <a class="text-right" href="">Forgot Password</a>
+                <br />
+                <p class="mb-0">Don't have an Account? <a href="/User/Registration">Sign Up</a></p>
+                @*</div>*@
+            </form>
+
+        </div>
+    </div>
+</div>
+
+
+<script src="~/js/jquery-3.4.1.min.js"></script>
