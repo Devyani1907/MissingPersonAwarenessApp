@@ -55,6 +55,7 @@ namespace MissingPersonWebApp.Controllers
 
                 if (userModel.Email != null && userModel.Password == hashed)
                 {
+                    HttpContext.Session.Set("role", System.Text.Json.JsonSerializer.SerializeToUtf8Bytes("admin"));
                     return RedirectToAction("Dashboard", "Dashboard");
                 }
                 else
@@ -98,5 +99,7 @@ namespace MissingPersonWebApp.Controllers
             }
             return View(model);
         }
+
+       
     }
 }

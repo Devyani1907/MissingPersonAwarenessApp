@@ -17,6 +17,7 @@ namespace MissingPersonWebApp.Data
         {
         }
 
+        public virtual DbSet<ContactusDetail> ContactusDetails { get; set; }
         public virtual DbSet<FacebookAccount> FacebookAccounts { get; set; }
         public virtual DbSet<MissingPersonDatum> MissingPersonData { get; set; }
         public virtual DbSet<TwitterAccount> TwitterAccounts { get; set; }
@@ -34,6 +35,31 @@ namespace MissingPersonWebApp.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.HasAnnotation("Relational:Collation", "SQL_Latin1_General_CP1_CI_AS");
+
+            modelBuilder.Entity<ContactusDetail>(entity =>
+            {
+                entity.HasKey(e => e.Contactid);
+
+                entity.ToTable("ContactusDetail");
+
+                entity.Property(e => e.CreatedDatetime).HasColumnType("datetime");
+
+                entity.Property(e => e.EmailId)
+                    .IsRequired()
+                    .HasMaxLength(200);
+
+                entity.Property(e => e.Message)
+                    .IsRequired()
+                    .HasMaxLength(500);
+
+                entity.Property(e => e.PhoneNo)
+                    .IsRequired()
+                    .HasMaxLength(20);
+
+                entity.Property(e => e.Subject)
+                    .IsRequired()
+                    .HasMaxLength(50);
+            });
 
             modelBuilder.Entity<FacebookAccount>(entity =>
             {
@@ -62,8 +88,6 @@ namespace MissingPersonWebApp.Data
 
                 entity.Property(e => e.FacebookPostId).HasMaxLength(500);
 
-                entity.Property(e => e.FacebookText).HasMaxLength(100);
-
                 entity.Property(e => e.FatherName).HasMaxLength(450);
 
                 entity.Property(e => e.FirstName)
@@ -89,8 +113,6 @@ namespace MissingPersonWebApp.Data
                 entity.Property(e => e.SpouseName).HasMaxLength(450);
 
                 entity.Property(e => e.TwitterPostId).HasMaxLength(500);
-
-                entity.Property(e => e.TwitterText).HasMaxLength(100);
 
                 entity.Property(e => e.UpdateDatetime).HasColumnType("datetime");
             });

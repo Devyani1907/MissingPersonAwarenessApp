@@ -78,17 +78,21 @@
                                     <div class="pull-right">
                                         <span><button class="btn btn-outline-light"><a href="/Dashboard/Dashboard">Home</a></button></span>&nbsp&nbsp&nbsp
                                         <span><button class="btn btn-outline-light"><a href="">About us</a></button></span>&nbsp&nbsp&nbsp
+                                        <span><button class="btn btn-outline-light"><a href="/Dashboard/Contactus">Contacts</a></button></span>&nbsp&nbsp&nbsp
                                         <span><button class="btn btn-outline-light"><a href="">Blog</a></button></span>&nbsp&nbsp&nbsp
-                                        <span><button class="btn btn-outline-light"><a href="">Contacts</a></button></span>&nbsp&nbsp&nbsp
                                         @{
-                                        var role = ViewData["role"];
-                                        if(role != null && role.ToString() == "admin")
-                                        {
-                                               <span>@ViewData["role"]</span>
-                                        }
+                                            var role = ViewData["role"];
+                                            if (role != null && role.ToString() == "admin")
+                                            {
+                                                <span><button class="btn btn-outline-light"><a href="/MissingPerson/ManageMissingPerson">Manage Missing Person</a></button></span>
+                                                <span><button class="btn btn-outline-light"><a href="/MissingPerson/ManageMissingPerson">Manage Social-Media Account</a></button></span>
+                                                <span><button class="btn btn-outline-light"><a href="" onclick="Logout()"><img class="img-responsive" src="~/Image/Admin_image.png" style="width: 21px;" alt=""></a></button></span>
+                                                @*<span><button class="btn btn-outline-light"><a href=""><img class="img-responsive" src="~/Image/Admin_image.png" style="width: 21px;" alt=""><span class="pull-right">Logout</span></a></button></span>*@
+
+                                            }
 
                                         }
-                                        <span><button class="btn btn-outline-light"><a href="/MissingPerson/ManageMissingPerson">Manage Missing Person</a></button></span>
+
                                     </div>
                                 </div><!-- /.navbar-collapse -->
                             </div><!-- /.container-fluid -->
@@ -110,6 +114,7 @@
                         <div class="title">
                             <h3>Missing <span>People</span></h3>
                         </div>
+                        <br/>
                         <div class="scrollmenu">
                             <div class="group">
                             </div>
@@ -164,6 +169,10 @@
               
             }
         });
+
+        function Logout() {
+            alert("done");
+        }
 
     </script>
 </body>

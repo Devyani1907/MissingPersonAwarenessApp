@@ -9,6 +9,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using MissingPersonWebApp.Controllers;
 using FacebookUtility;
+using System.Text;
+using Newtonsoft.Json;
 
 namespace MissingPersonWebApp.Controllers
 {
@@ -28,6 +30,26 @@ namespace MissingPersonWebApp.Controllers
         // GET: MissingPerson Details
         public ActionResult ManageMissingPerson()
         {
+            bool isSessionExist = HttpContext.Session.IsAvailable;
+            if (isSessionExist)
+            {
+                HttpContext.Session.TryGetValue("role", out byte[] value);
+                string role = string.Empty;
+                if (value != null)
+                {
+                    role = Encoding.ASCII.GetString(value).Replace(@"\", "");
+                    role = JsonConvert.DeserializeObject<string>(role);
+
+                }
+                if (role == "admin")
+                {
+                    ViewData["role"] = "admin";
+                }
+                else
+                {
+                    ViewData["role"] = "user";
+                }
+            }
             return View();
         }
 

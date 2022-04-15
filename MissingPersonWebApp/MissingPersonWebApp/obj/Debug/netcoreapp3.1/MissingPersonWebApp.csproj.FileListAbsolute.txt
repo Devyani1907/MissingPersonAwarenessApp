@@ -452,3 +452,4 @@ D:\Code Section\.Net code\MissingPersonWebApp\MissingPersonWebApp\bin\Debug\netc
 D:\Code Section\.Net code\MissingPersonWebApp\MissingPersonWebApp\bin\Debug\netcoreapp3.1\System.Web.Optimization.xml
 D:\Code Section\.Net code\MissingPersonWebApp\MissingPersonWebApp\bin\Debug\netcoreapp3.1\Facebook.xml
 D:\Code Section\.Net code\MissingPersonWebApp\MissingPersonWebApp\bin\Debug\netcoreapp3.1\System.Web.Helpers.dll
+D:\Code Section\.Net code\MissingPersonWebApp\MissingPersonWebApp\obj\Debug\netcoreapp3.1\Razor\Views\Dashboard\Contactus.cshtml.g.cs

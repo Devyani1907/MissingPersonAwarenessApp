@@ -47,11 +47,22 @@
                                 <!-- Collect the nav links, forms, and other content for toggling -->
                                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                                     <div class="pull-right">
-                                      <span><button class="btn btn-outline-light"><a href="/Dashboard/Dashboard">Home</a></button></span>&nbsp&nbsp&nbsp
+                                        <span><button class="btn btn-outline-light"><a href="/Dashboard/Dashboard">Home</a></button></span>&nbsp&nbsp&nbsp
                                         <span><button class="btn btn-outline-light"><a href="">About us</a></button></span>&nbsp&nbsp&nbsp
                                         <span><button class="btn btn-outline-light"><a href="">Blog</a></button></span>&nbsp&nbsp&nbsp
                                         <span><button class="btn btn-outline-light"><a href="">Contacts</a></button></span>&nbsp&nbsp&nbsp
-                                        <span><button class="btn btn-outline-light"><a href="/MissingPerson/ManageMissingPerson">Manage Missing Person</a></button></span>
+                                        @{
+                                            var role = ViewData["role"];
+                                            if (role != null && role.ToString() == "admin")
+                                            {
+                                                <span><button class="btn btn-outline-light"><a href="/MissingPerson/ManageMissingPerson">Manage Missing Person</a></button></span>
+                                                <span><button class="btn btn-outline-light"><a href="/MissingPerson/ManageMissingPerson">Manage Social-Media Account</a></button></span>
+                                                <span><button class="btn btn-outline-light"><a href="" onclick="Logout()"><img class="img-responsive" src="~/Image/Admin_image.png" style="width: 21px;" alt=""></a></button></span>
+                                                @*<span><button class="btn btn-outline-light"><a href=""><img class="img-responsive" src="~/Image/Admin_image.png" style="width: 21px;" alt=""><span class="pull-right">Logout</span></a></button></span>*@
+
+                                            }
+
+                                        }
                                     </div>
                                 </div><!-- /.navbar-collapse -->
                             </div><!-- /.container-fluid -->
@@ -88,26 +99,7 @@
     </div>
 </div>
 
-<!-- Modal -->
-<!--<div id="addMissingPersonModal" class="modal fade dropdown-backdrop " role="dialog">
-    <div class="modal-dialog">-->
-<!-- Modal content-->
-<!--<div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Modal Header working</h4>
-            </div>
-            <div class="modal-body">
-                <p>Some text in the modal.</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            </div>
-        </div>
 
-    </div>
-</div>-->
-<!-- Modal end -->
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
 <script src="~/js/bootstrap.js"></script>

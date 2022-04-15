@@ -1,0 +1,129 @@
+﻿@model MissingPersonWebApp.Models.ContactusModel
+
+@{
+    ViewData["Title"] = "Contact Us Page";
+}
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+
+<!-- Sign In Start -->
+
+<style>
+
+    .verticalLine {
+        border-left: thick solid #152575;
+    }
+
+    .text-primary {
+        color: #376290 !important;
+    }
+
+    .center {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+</style>
+
+<link href="~/css/CSS/animate.min.css" rel="stylesheet" />
+<link href="~/css/CSS/bootstrap.min.css" rel="stylesheet" />
+<link href="~/css/CSS/font-awesome.min.css" rel="stylesheet" />
+<link href="~/css/CSS/main.css" rel="stylesheet" />
+<link href="~/css/CSS/owl.carousel.css" rel="stylesheet" />
+<link href="~/css/CSS/responsive.css" rel="stylesheet" />
+<link href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css" rel="stylesheet" />
+
+<section id="hero-area">
+    <img class="img-responsive" src="~/Image/header1.png" alt="">
+</section>
+<div class="container body-content">
+    <nav id="navigation">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="block">
+                        <nav class="navbar navbar-default">
+                            <div class="container-fluid">
+                                <!-- Brand and toggle get grouped for better mobile display -->
+                                <div class="navbar-header">
+                                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                                        <span class="sr-only">Toggle navigation</span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                    </button>
+                                </div>
+
+                                <!-- Collect the nav links, forms, and other content for toggling -->
+                                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                                    <div class="pull-right">
+                                        <span><button class="btn btn-outline-light"><a href="/Dashboard/Dashboard">Home</a></button></span>&nbsp&nbsp&nbsp
+                                        <span><button class="btn btn-outline-light"><a href="">About us</a></button></span>&nbsp&nbsp&nbsp
+                                        <span><button class="btn btn-outline-light"><a href="">Contact us</a></button></span>&nbsp&nbsp&nbsp
+                                        <span><button class="btn btn-outline-light"><a href="">Blog</a></button></span>&nbsp&nbsp&nbsp
+                                        @{
+                                            var role = ViewData["role"];
+                                            if (role != null && role.ToString() == "admin")
+                                            {
+                                                <span><button class="btn btn-outline-light"><a href="/MissingPerson/ManageMissingPerson">Manage Missing Person</a></button></span>
+                                                <span><button class="btn btn-outline-light"><a href="/MissingPerson/ManageMissingPerson">Manage Social-Media Account</a></button></span>
+                                            }
+
+                                        }
+                                    </div>
+                                </div><!-- /.navbar-collapse -->
+                            </div><!-- /.container-fluid -->
+                        </nav>
+                    </div>
+                </div><!-- .col-md-12 close -->
+            </div><!-- .row close -->
+        </div><!-- .container close -->
+    </nav><!-- header close -->
+    <!--Header end-->
+</div>
+<div class="column col-md-9" style="padding-left: 399px;">
+    <h3 class="text-primary text-center">Contact Us</h3>
+    <br/>
+    <div class="bg-light rounded h-100 p-4">
+        <span style="color: red; padding-left: 139px;">@ViewBag.Message</span>
+        <form method="post" action="">
+            <label for="floatingInput">Email address</label>
+            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", @placeholder = "name@example.com" } })
+            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+            <br />
+            <br />
+            <label for="floatingPassword">Pnone No.</label>
+            @Html.EditorFor(model => model.PhoneNo, new { htmlAttributes = new { @class = "form-control", @placeholder = "PhoneNo" } })
+            @Html.ValidationMessageFor(model => model.PhoneNo, "", new { @class = "text-danger" })
+            <span style="color: #dc3545">Please provide phone no. like 07405833165</span>
+            <br />
+            <br />
+            <label for="floatingPassword">Subject</label>
+            @Html.EditorFor(model => model.Subject, new { htmlAttributes = new { @class = "form-control", @placeholder = "Subject" } })
+            @Html.ValidationMessageFor(model => model.Subject, "", new { @class = "text-danger" })
+            <br />
+            <br />
+            <div><label for="floatingPassword">Message</label></div>
+            @Html.TextAreaFor(model => model.Message, new { htmlAttributes = new { @class = "form-control", @placeholder = "Message" }, style = "height: 109px;width: 498px;" })
+            @Html.ValidationMessageFor(model => model.Message, "", new { @class = "text-danger" })
+            <span style="color: #dc3545">Maximum is 500 characters</span>
+            <br />
+            <br />
+            <button type="submit" class="btn btn-primary py-3 w-100 mb-4">Send</button><br /><br />
+
+            @*</div>*@
+        </form>
+
+    </div>
+</div>
+
+
+@*<script src="~/js/jquery-3.4.1.min.js"></script>*@
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+<script src="~/js/bootstrap.js"></script>
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
