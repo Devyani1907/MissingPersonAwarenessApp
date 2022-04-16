@@ -13,5 +13,7 @@ namespace MissingPersonWebApp.Data
         public string AppSecret { get; set; }
         public string PageAccessToken { get; set; }
         public bool Enable { get; set; }
+        public DateTime? CreatedDatetime { get; set; }
+        public DateTime? UpdateDatetime { get; set; }
     }
 }

@@ -1,0 +1,256 @@
+﻿
+@{
+    ViewBag.Title = "Manage Facebook Account";
+}
+@Html.AntiForgeryToken()
+<!--Header-->
+
+<style>
+
+    .dropdown {
+        overflow: hidden;
+        color: blue;
+    }
+
+        .dropdown .dropbtn {
+            font-size: 16px;
+            border: none;
+            outline: none;
+            color: blue;
+            padding: 14px 16px;
+            background-color: inherit;
+            font-family: inherit;
+            margin: 0;
+        }
+
+
+
+    .dropdown-content {
+        display: none;
+        background-color: #f9f9f9;
+        min-width: 50px;
+        margin-left: -100px;
+    }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            text-align: right;
+        }
+
+            .dropdown-content a:hover {
+                background-color: #ddd;
+            }
+
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
+</style>
+
+<link href="~/css/CSS/animate.min.css" rel="stylesheet" />
+<link href="~/css/CSS/bootstrap.min.css" rel="stylesheet" />
+<link href="~/css/CSS/font-awesome.min.css" rel="stylesheet" />
+<link href="~/css/CSS/main.css" rel="stylesheet" />
+<link href="~/css/CSS/owl.carousel.css" rel="stylesheet" />
+<link href="~/css/CSS/responsive.css" rel="stylesheet" />
+<link href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css" rel="stylesheet" />
+
+<section id="hero-area">
+    <img class="img-responsive" src="~/Image/header1.png" alt="">
+</section>
+<div class="container body-content">
+    <nav id="navigation">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="block">
+                        <nav class="navbar navbar-default">
+                            <div class="container-fluid">
+                                <!-- Brand and toggle get grouped for better mobile display -->
+                                <div class="navbar-header">
+                                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                                        <span class="sr-only">Toggle navigation</span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                    </button>
+                                    @*<a class="navbar-brand" href="#">
+                                            <img src="~/Image/logo.png" alt="Logo">
+                                        </a>*@
+
+                                </div>
+
+                                <!-- Collect the nav links, forms, and other content for toggling -->
+                                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                                    <div class="pull-right">
+                                        <span><button class="btn btn-outline-light"><a href="/Dashboard/Dashboard">Home</a></button></span>&nbsp&nbsp&nbsp
+                                        <span><button class="btn btn-outline-light"><a href="">About us</a></button></span>&nbsp&nbsp&nbsp
+                                        <span><button class="btn btn-outline-light"><a href="">Blog</a></button></span>&nbsp&nbsp&nbsp
+                                        <span><button class="btn btn-outline-light"><a href="">Contacts</a></button></span>&nbsp&nbsp&nbsp
+                                        @{
+                                            var role = ViewData["role"];
+                                            if (role != null && role.ToString() == "admin")
+                                            {
+                                                <span class="dropdown">
+                                                    <button class="btn btn-outline-light" style="color: #6590cc;">Manage Account&nbsp<i class="fa fa-caret-down"></i></button>
+                                                    <span class="dropdown-content">
+                                                        <a href="/Facebook/FacebookDashboard">Manage Facebook Accounts</a>
+                                                        <a href="/Twitter/TwitterDashboard">Manage Twitter Accounts</a>
+                                                        <a href="" onclick="Logout()">Logout</a>
+                                                    </span>
+                                                </span>
+                                                @*<span><button class="btn btn-outline-light"><a href=""><img class="img-responsive" src="~/Image/Admin_image.png" style="width: 21px;" alt=""><span class="pull-right">Logout</span></a></button></span>*@
+
+                                            }
+
+                                        }
+                                    </div>
+                                </div><!-- /.navbar-collapse -->
+                            </div><!-- /.container-fluid -->
+                        </nav>
+                    </div>
+                </div><!-- .col-md-12 close -->
+            </div><!-- .row close -->
+        </div><!-- .container close -->
+    </nav><!-- header close -->
+    <!--Header end-->
+    <div class="">
+        <div class="bg-light rounded h-100 p-4">
+            <div class="title">
+                <h3>
+                    Facebook Account List 
+                    <button type="button" class="btn btn-info m-2" style="float: right;" id="AddFacebookAccountPage" >Add</button>
+                </h3>
+
+            </div>
+            <table class="table table-hover" id="facebookaccounttable">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">App Id</th>
+                        <th scope="col">App Name</th>
+                        <th scope="col">App Secret</th>
+                        <th scope="col">Enable</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+<script src="~/js/bootstrap.js"></script>
+
+<script>
+    $(document).ready(function () {
+
+
+        let url = window.location.origin;
+        LoadTable(url);
+
+        $("#AddFacebookAccountPage").click(function (e) {
+            window.location.href = origin + "/Facebook/AddFacebookAccount";
+        })
+
+
+    });
+
+    function EditFacebookAccount(id) {
+        debugger;
+        if (id > 0) {
+
+            window.location.href = window.location.origin + "/Facebook/UpdateFacebookAccount?id=" + id;
+
+        }
+
+    }
+
+    function DeleteFacebookAccount(id) {
+        debugger;
+        if (id > 0) {
+            $.ajax({
+                url: window.location.origin + "/Facebook/DeleteFacebookAccount?id=" + id,
+                success: function (result) {
+                    debugger;
+                    if (result.data == true) {
+                        alert("Deleted successfully");
+
+                        var table = $('#missingpeopletable').DataTable();
+
+                        table.destroy();
+                        LoadTable(window.location.origin);
+                    }
+                }
+            });
+        }
+    }
+
+    function LoadTable(url) {
+
+        var table = $('#facebookaccounttable').DataTable({
+            "bProcessing": true,
+            "serverSide": true,
+            ordering: true,
+            searching: true,
+            "ajax": {
+                "url": url + "/Facebook/GetFacebookAccounts",
+                "type": "GET"
+            },
+            "beforeSend": function (xhr) {
+                xhr.setRequestHeader("XSRF-TOKEN",
+                    $('input:hidden[name="__RequestVerificationToken"]').val());
+            },
+            "columns": [
+                {
+                    "data": null,
+                    "render": function (data, type, full, meta) {
+                        return (meta.row + 1);
+                    }
+                },
+                { "data": "appId" },
+                { "data": "appName" },
+                { "data": "appSecret" },
+                {
+                    "data": null,
+                    render: function (data, type, row) {
+                        debugger;
+                        if (data.enable == true)
+                            return '<span style="color: #e70e0e;">Yes</span>';
+                        else
+                            return '<span>No</span>';
+                    }
+                },
+                {
+                    "data": null,
+                    render: function (data, type, row) {
+                        debugger;
+                        //if (data.IsFeedbackDone == 1)
+                        //    return '<button type="button" class="btn btn-success">Done</button>';
+                        //else
+                        return '<a class="btn btn-success m-2" onclick ="EditFacebookAccount(' + data.facebookAccountId + ')" >Edit</a>' + '  ' +
+                            '<a class="btn btn-danger m-2" onclick ="DeleteFacebookAccount(' + data.facebookAccountId + ')" >Delete</a>';
+                    }
+                }
+            ],
+            //"columnDefs": [
+            //    {
+            //        "render": function (data, type, row) {
+            //            let dateArry = data.split('T')[0].split('-');
+            //            return date = dateArry[2] + '-' + dateArry[1] + '-' + dateArry[0]
+            //        },
+            //        "targets": 3
+            //    }
+            //]
+        });
+
+
+
+    }
+</script>

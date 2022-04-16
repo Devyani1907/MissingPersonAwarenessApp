@@ -75,7 +75,11 @@ namespace MissingPersonWebApp.Data
                     .IsRequired()
                     .HasMaxLength(500);
 
+                entity.Property(e => e.CreatedDatetime).HasColumnType("datetime");
+
                 entity.Property(e => e.PageAccessToken).IsRequired();
+
+                entity.Property(e => e.UpdateDatetime).HasColumnType("datetime");
             });
 
             modelBuilder.Entity<MissingPersonDatum>(entity =>
@@ -138,6 +142,10 @@ namespace MissingPersonWebApp.Data
                 entity.Property(e => e.ConsumerSecret)
                     .IsRequired()
                     .HasMaxLength(500);
+
+                entity.Property(e => e.CreatedDatetime).HasColumnType("datetime");
+
+                entity.Property(e => e.UpdateDatetime).HasColumnType("datetime");
             });
 
             modelBuilder.Entity<User>(entity =>

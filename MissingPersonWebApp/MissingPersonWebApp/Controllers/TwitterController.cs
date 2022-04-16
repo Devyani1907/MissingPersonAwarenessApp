@@ -9,6 +9,8 @@ using Tweetinvi.Models;
 using Tweetinvi.Parameters;
 using MissingPersonWebApp.Models;
 using MissingPersonWebApp.Logic;
+using System.Text;
+using Newtonsoft.Json;
 
 namespace MissingPersonWebApp.Controllers
 {
@@ -60,6 +62,160 @@ namespace MissingPersonWebApp.Controllers
 
             }
             
+        }
+
+        public ActionResult TwitterDashboard()
+        {
+            bool isSessionExist = HttpContext.Session.IsAvailable;
+            if (isSessionExist)
+            {
+                HttpContext.Session.TryGetValue("role", out byte[] value);
+                string role = string.Empty;
+                if (value != null)
+                {
+                    role = Encoding.ASCII.GetString(value).Replace(@"\", "");
+                    role = JsonConvert.DeserializeObject<string>(role);
+
+                }
+                if (role == "admin")
+                {
+                    ViewData["role"] = "admin";
+                }
+                else
+                {
+                    ViewData["role"] = "user";
+                }
+            }
+
+            return View();
+        }
+
+        public ActionResult GetTwitterAccounts()
+        {
+            List<TwitterModel> List = new List<TwitterModel>();
+            TwitterLogic Logic = new TwitterLogic();
+            List = Logic.GetAllTwitterAccountDetail();
+
+            return Json(new
+            {
+                draw = 1,
+                recordsTotal = List.Count(),
+                recordsFiltered = List.Count(),
+                data = List
+            });
+        }
+
+        public ActionResult AddTwitterAccount()
+        {
+            bool isSessionExist = HttpContext.Session.IsAvailable;
+            if (isSessionExist)
+            {
+                HttpContext.Session.TryGetValue("role", out byte[] value);
+                string role = string.Empty;
+                if (value != null)
+                {
+                    role = Encoding.ASCII.GetString(value).Replace(@"\", "");
+                    role = JsonConvert.DeserializeObject<string>(role);
+
+                }
+                if (role == "admin")
+                {
+                    ViewData["role"] = "admin";
+                }
+                else
+                {
+                    ViewData["role"] = "user";
+                }
+            }
+
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult AddTwitterAccount(TwitterModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                TwitterLogic logic = new TwitterLogic();
+                logic.AddTwitterAccount(model);
+                return Redirect("TwitterDashboard");
+            }
+
+            bool isSessionExist = HttpContext.Session.IsAvailable;
+            if (isSessionExist)
+            {
+                HttpContext.Session.TryGetValue("role", out byte[] value);
+                string role = string.Empty;
+                if (value != null)
+                {
+                    role = Encoding.ASCII.GetString(value).Replace(@"\", "");
+                    role = JsonConvert.DeserializeObject<string>(role);
+
+                }
+                if (role == "admin")
+                {
+                    ViewData["role"] = "admin";
+                }
+                else
+                {
+                    ViewData["role"] = "user";
+                }
+            }
+            return View(model);
+        }
+
+
+        public ActionResult UpdateTwitterAccount(int id)
+        {
+            bool isSessionExist = HttpContext.Session.IsAvailable;
+            if (isSessionExist)
+            {
+                HttpContext.Session.TryGetValue("role", out byte[] value);
+                string role = string.Empty;
+                if (value != null)
+                {
+                    role = Encoding.ASCII.GetString(value).Replace(@"\", "");
+                    role = JsonConvert.DeserializeObject<string>(role);
+
+                }
+                if (role == "admin")
+                {
+                    ViewData["role"] = "admin";
+                }
+                else
+                {
+                    ViewData["role"] = "user";
+                }
+            }
+            ViewData["Id"] = id;
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult UpdateTwitterAccount(TwitterModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                TwitterLogic logic = new TwitterLogic();
+                logic.UpdateTwitterAccount(model);
+                return Redirect("TwitterDashboard");
+            }
+
+            return View(model);
+        }
+
+        public JsonResult GetTwitterAccountById(int id)
+        {
+            TwitterLogic logic = new TwitterLogic();
+            TwitterModel model = new TwitterModel();
+
+            model = logic.GetTwitterAccountById(id);
+
+            if (model.TwitterAccountId > 0)
+                return Json(new { data = model });
+            else
+                return null;
+
         }
     }
 }

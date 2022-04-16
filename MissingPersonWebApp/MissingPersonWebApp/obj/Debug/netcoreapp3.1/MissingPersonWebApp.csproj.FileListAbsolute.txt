@@ -453,3 +453,9 @@ D:\Code Section\.Net code\MissingPersonWebApp\MissingPersonWebApp\bin\Debug\netc
 D:\Code Section\.Net code\MissingPersonWebApp\MissingPersonWebApp\bin\Debug\netcoreapp3.1\Facebook.xml
 D:\Code Section\.Net code\MissingPersonWebApp\MissingPersonWebApp\bin\Debug\netcoreapp3.1\System.Web.Helpers.dll
 D:\Code Section\.Net code\MissingPersonWebApp\MissingPersonWebApp\obj\Debug\netcoreapp3.1\Razor\Views\Dashboard\Contactus.cshtml.g.cs
+D:\Code Section\.Net code\MissingPersonWebApp\MissingPersonWebApp\obj\Debug\netcoreapp3.1\Razor\Views\Facebook\FacebookDashboard.cshtml.g.cs
+D:\Code Section\.Net code\MissingPersonWebApp\MissingPersonWebApp\obj\Debug\netcoreapp3.1\Razor\Views\Facebook\AddFacebookAccount.cshtml.g.cs
+D:\Code Section\.Net code\MissingPersonWebApp\MissingPersonWebApp\obj\Debug\netcoreapp3.1\Razor\Views\Facebook\UpdateFacebookAccount.cshtml.g.cs
+D:\Code Section\.Net code\MissingPersonWebApp\MissingPersonWebApp\obj\Debug\netcoreapp3.1\Razor\Views\Twitter\AddTwitterAccount.cshtml.g.cs
+D:\Code Section\.Net code\MissingPersonWebApp\MissingPersonWebApp\obj\Debug\netcoreapp3.1\Razor\Views\Twitter\TwitterDashboard.cshtml.g.cs
+D:\Code Section\.Net code\MissingPersonWebApp\MissingPersonWebApp\obj\Debug\netcoreapp3.1\Razor\Views\Twitter\UpdateTwitterAccount.cshtml.g.cs
