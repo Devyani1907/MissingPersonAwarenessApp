@@ -9,6 +9,47 @@
     .modal-backdrop-m {
         z-index: -1;
     }
+
+    .dropdown {
+        overflow: hidden;
+        color: blue;
+    }
+
+        .dropdown .dropbtn {
+            font-size: 16px;
+            border: none;
+            outline: none;
+            color: blue;
+            padding: 14px 16px;
+            background-color: inherit;
+            font-family: inherit;
+            margin: 0;
+        }
+
+
+
+    .dropdown-content {
+        display: none;
+        background-color: #f9f9f9;
+        min-width: 50px;
+        margin-left: -100px;
+    }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            text-align: right;
+        }
+
+            .dropdown-content a:hover {
+                background-color: #ddd;
+            }
+
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
 </style>
 
 <link href="~/css/CSS/animate.min.css" rel="stylesheet" />
@@ -49,19 +90,22 @@
                                     <div class="pull-right">
                                         <span><button class="btn btn-outline-light"><a href="/Dashboard/Dashboard">Home</a></button></span>&nbsp&nbsp&nbsp
                                         <span><button class="btn btn-outline-light"><a href="">About us</a></button></span>&nbsp&nbsp&nbsp
-                                        <span><button class="btn btn-outline-light"><a href="">Blog</a></button></span>&nbsp&nbsp&nbsp
-                                        <span><button class="btn btn-outline-light"><a href="">Contacts</a></button></span>&nbsp&nbsp&nbsp
+                                        <span><button class="btn btn-outline-light"><a href="">Contact us</a></button></span>&nbsp&nbsp&nbsp
                                         @{
                                             var role = ViewData["role"];
                                             if (role != null && role.ToString() == "admin")
                                             {
-                                                <span><button class="btn btn-outline-light"><a href="/MissingPerson/ManageMissingPerson">Manage Missing Person</a></button></span>
-                                                <span><button class="btn btn-outline-light"><a href="/MissingPerson/ManageMissingPerson">Manage Social-Media Account</a></button></span>
-                                                <span><button class="btn btn-outline-light"><a href="" onclick="Logout()"><img class="img-responsive" src="~/Image/Admin_image.png" style="width: 21px;" alt=""></a></button></span>
-                                                @*<span><button class="btn btn-outline-light"><a href=""><img class="img-responsive" src="~/Image/Admin_image.png" style="width: 21px;" alt=""><span class="pull-right">Logout</span></a></button></span>*@
-
-                                            }
-
+                                                <span><button class="btn btn-outline-light"><a href="">Blog</a></button></span>
+                                                <span><button class="btn btn-outline-light"><a href = "/MissingPerson/ManageMissingPerson" > Manage Missing Person</a></button></span>
+                                                                                <span class="dropdown">
+                                                                                    <button class="btn btn-outline-light" style="color: #6590cc;">Manage Account&nbsp<i class="fa fa-caret-down"></i></button>
+                                                                                    <span class="dropdown-content">
+                                                                                        <a href = "/Facebook/FacebookDashboard" > Manage Facebook Accounts</a>
+                                                                                        <a href = "/Twitter/TwitterDashboard" > Manage Twitter Accounts</a>
+                                                                                        <a href = "" onclick= "Logout()" > Logout </a >
+                                                                                        </span>
+                                                                                    </span>
+                                                                                }
                                         }
                                     </div>
                                 </div><!-- /.navbar-collapse -->
@@ -86,6 +130,7 @@
                 <thead>
                     <tr>
                         <th scope="col">#</th>
+                        <th scope="col">Image</th>
                         <th scope="col">First Name</th>
                         <th scope="col">Last Name</th>
                         <th scope="col">Missing Date</th>
@@ -124,7 +169,7 @@
         if (id > 0) {
 
             window.location.href = window.location.origin + "/MissingPerson/UpdateMissingPerson?id=" + id;
-            
+
         }
 
     }
@@ -171,6 +216,16 @@
                         return (meta.row + 1);
                     }
                 },
+                {
+                    "data": null,
+                    render: function (data, type, row) {
+                        debugger;
+                        if (data.imageName == '')
+                            return '';
+                        else
+                            return '<img src="/Image/MissingPeopleImages/' + data.imageName + '" id="" width="100" class="center" />';
+                    }
+                },
                 { "data": "firstName" },
                 { "data": "lastName" },
                 { "data": "missingDate", "Type": 'date' },
@@ -192,7 +247,7 @@
                         let dateArry = data.split('T')[0].split('-');
                         return date = dateArry[2] + '-' + dateArry[1] + '-' + dateArry[0]
                     },
-                    "targets": 3
+                    "targets": 4
                 }
             ]
         });

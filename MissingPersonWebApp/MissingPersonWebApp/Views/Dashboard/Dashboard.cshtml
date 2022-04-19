@@ -123,29 +123,27 @@
                                         <span><button class="btn btn-outline-light"><a href="/Dashboard/Dashboard">Home</a></button></span>&nbsp&nbsp&nbsp
                                         <span><button class="btn btn-outline-light"><a href="">About us</a></button></span>&nbsp&nbsp&nbsp
                                         <span><button class="btn btn-outline-light"><a href="/Dashboard/Contactus">Contacts</a></button></span>&nbsp&nbsp&nbsp
-                                        <span><button class="btn btn-outline-light"><a href="">Blog</a></button></span>&nbsp&nbsp&nbsp
+                                 
                                         @{
                                             var role = ViewData["role"];
                                             if (role != null && role.ToString() == "admin")
                                             {
+                                                <span><button class="btn btn-outline-light"><a href="">Blog</a></button></span>
                                                 <span><button class="btn btn-outline-light"><a href="/MissingPerson/ManageMissingPerson">Manage Missing Person</a></button></span>
-                                                    <span class="dropdown">
-                                                        <button class="btn btn-outline-light" style="color: #6590cc;">Manage Account&nbsp<i class="fa fa-caret-down"></i></button>
-                                                        <span class="dropdown-content">
-                                                            <a href="/Facebook/FacebookDashboard">Manage Facebook Accounts</a>
-                                                            <a href="/Twitter/TwitterDashboard">Manage Twitter Accounts</a>
-                                                            <a href="" onclick="Logout()">Logout</a>
-                                                        </span>
+                                                <span class="dropdown">
+                                                    <button class="btn btn-outline-light" style="color: #6590cc;">Manage Account&nbsp<i class="fa fa-caret-down"></i></button>
+                                                    <span class="dropdown-content">
+                                                        <a href="/Facebook/FacebookDashboard">Manage Facebook Accounts</a>
+                                                        <a href="/Twitter/TwitterDashboard">Manage Twitter Accounts</a>
+                                                        <a href="" onclick="Logout()">Logout</a>
                                                     </span>
-                                                    @*<span><button class="btn btn-outline-light"><a href="" onclick="Logout()"><img class="img-responsive" src="~/Image/Admin_image.png" style="width: 21px;" alt=""></a></button></span>
-                                                    <span><button class="btn btn-outline-light"></button></span>*@
-                                                    @*<span><button class="btn btn-outline-light"><a href=""><img class="img-responsive" src="~/Image/Admin_image.png" style="width: 21px;" alt=""><span class="pull-right">Logout</span></a></button></span>*@
+                                                </span>
 
-                                                    }
+                                            }
 
-                                                    }
+                                        }
 
-                                                </div>
+                                    </div>
                                 </div><!-- /.navbar-collapse -->
                             </div><!-- /.container-fluid -->
                         </nav>

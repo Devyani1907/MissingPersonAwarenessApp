@@ -60,13 +60,14 @@
                                         <span><button class="btn btn-outline-light"><a href="/Dashboard/Dashboard">Home</a></button></span>&nbsp&nbsp&nbsp
                                         <span><button class="btn btn-outline-light"><a href="">About us</a></button></span>&nbsp&nbsp&nbsp
                                         <span><button class="btn btn-outline-light"><a href="">Contact us</a></button></span>&nbsp&nbsp&nbsp
-                                        <span><button class="btn btn-outline-light"><a href="">Blog</a></button></span>&nbsp&nbsp&nbsp
+
                                         @{
                                             var role = ViewData["role"];
                                             if (role != null && role.ToString() == "admin")
                                             {
-                                                <span><button class="btn btn-outline-light"><a href="/MissingPerson/ManageMissingPerson">Manage Missing Person</a></button></span>
-                                                <span><button class="btn btn-outline-light"><a href="/MissingPerson/ManageMissingPerson">Manage Social-Media Account</a></button></span>
+                                                <span><button class="btn btn-outline-light"><a href="">Blog</a></button></span>
+                                                <span><button class="btn btn-outline-light"><a href = "/MissingPerson/ManageMissingPerson" > Manage Missing Person</a></button></span>
+                                                <span><button class="btn btn-outline-light"><a href = "/MissingPerson/ManageMissingPerson" > Manage Social-Media Account</a></button></span>
                                             }
 
                                         }
@@ -92,10 +93,10 @@
             @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
             <br />
             <br />
-            <label for="floatingPassword">Pnone No.</label>
-            @Html.EditorFor(model => model.PhoneNo, new { htmlAttributes = new { @class = "form-control", @placeholder = "PhoneNo" } })
+            <label for="floatingPassword">Phone No.</label>
+            @Html.EditorFor(model => model.PhoneNo, new { htmlAttributes = new { @class = "form-control", @placeholder = "" } })
             @Html.ValidationMessageFor(model => model.PhoneNo, "", new { @class = "text-danger" })
-            <span style="color: #dc3545">Please provide phone no. like 07405833165</span>
+            @*<span style="color: #dc3545">Please provide phone no. like 07405833165</span>*@
             <br />
             <br />
             <label for="floatingPassword">Subject</label>
@@ -104,7 +105,7 @@
             <br />
             <br />
             <div><label for="floatingPassword">Message</label></div>
-            @Html.TextAreaFor(model => model.Message, new { htmlAttributes = new { @class = "form-control", @placeholder = "Message" }, style = "height: 109px;width: 498px;" })
+            @Html.TextAreaFor(model => model.Message, new { htmlAttributes = new { @class = "form-control", @placeholder = "Message" }, style = "height: 109px;width: 596px;" })
             @Html.ValidationMessageFor(model => model.Message, "", new { @class = "text-danger" })
             <span style="color: #dc3545">Maximum is 500 characters</span>
             <br />

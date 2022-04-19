@@ -193,7 +193,7 @@ namespace MissingPersonWebApp.Controllers
             if (model.File != null)
             {
                 string uploadsFolder = Path.Combine(_hostingEnvironment.WebRootPath, "Image/MissingPeopleImages");
-                uniqueFileName = Guid.NewGuid().ToString() + "_" + model.File.FileName;
+                uniqueFileName = Guid.NewGuid().ToString() + "_" + model.File.FileName.Replace(" ", "");
                 string filePath = Path.Combine(uploadsFolder, uniqueFileName);
                 using (var fileStream = new FileStream(filePath, FileMode.Create))
                 {

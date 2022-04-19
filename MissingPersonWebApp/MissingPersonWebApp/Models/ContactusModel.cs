@@ -12,11 +12,11 @@ namespace MissingPersonWebApp.Models
         [EmailAddress]
         public string Email { get; set; }
 
-        [Required(ErrorMessage = "PhoneNo is required")]
-        [StringLength(11, ErrorMessage = "Please provide correct phone number")]
+        [Required(ErrorMessage = "Phone No. is required")]
+        [StringLength(20, ErrorMessage = "Please provide correct phone number")]
         public string PhoneNo { get; set; }
 
-        [Required(ErrorMessage = "Message is required")]
+        [Required(ErrorMessage = "Message is required and")]
         [StringLength(500, ErrorMessage = "Maximum allowed word is 500")]
         public string Message { get; set; }
 

@@ -156,23 +156,21 @@
                                     <div class="pull-right">
                                         <span><button class="btn btn-outline-light"><a href="/Dashboard/Dashboard">Home</a></button></span>&nbsp&nbsp&nbsp
                                         <span><button class="btn btn-outline-light"><a href="">About us</a></button></span>&nbsp&nbsp&nbsp
-                                        <span><button class="btn btn-outline-light"><a href="">Blog</a></button></span>&nbsp&nbsp&nbsp
-                                        <span><button class="btn btn-outline-light"><a href="">Contacts</a></button></span>&nbsp&nbsp&nbsp
+                                        <span><button class="btn btn-outline-light"><a href="">Contact us</a></button></span>&nbsp&nbsp&nbsp
                                         @{
                                             var role = ViewData["role"];
                                             if (role != null && role.ToString() == "admin")
                                             {
+                                                <span><button class="btn btn-outline-light"><a href="">Blog</a></button></span>
                                                 <span><button class="btn btn-outline-light"><a href="/MissingPerson/ManageMissingPerson">Manage Missing Person</a></button></span>
                                                 <span class="dropdown">
                                                     <button class="btn btn-outline-light" style="color: #6590cc;">Manage Account&nbsp<i class="fa fa-caret-down"></i></button>
                                                     <span class="dropdown-content">
-                                                        <a href="/Facebook/FacebookrDashboard">Manage Facebook Accounts</a>
-                                                        <a href="/Twitter/TwitterrDashboard">Manage Twitter Accounts</a>
+                                                        <a href="/Facebook/FacebookDashboard">Manage Facebook Accounts</a>
+                                                        <a href="/Twitter/TwitterDashboard">Manage Twitter Accounts</a>
                                                         <a href="" onclick="Logout()">Logout</a>
                                                     </span>
                                                 </span>
-                                                @*<span><button class="btn btn-outline-light"><a href=""><img class="img-responsive" src="~/Image/Admin_image.png" style="width: 21px;" alt=""><span class="pull-right">Logout</span></a></button></span>*@
-
                                             }
 
                                         }
@@ -264,7 +262,7 @@
                 <input type="hidden" name="TwitterAccountId" id="TwitterAccId" />
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-10" style="padding-left: 169px;">
-                        <input type="submit" value="Create" class="btn btn-info" style="" />
+                        <input type="submit" value="Update" class="btn btn-info" style="" />
                     </div>
                 </div>
             </div>
